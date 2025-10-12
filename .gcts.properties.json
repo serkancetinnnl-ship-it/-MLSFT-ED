@@ -1,0 +1,14 @@
+{
+  "name": "_mlsft_ed",
+  "version": "1.0.0",
+  "description": "/MLSFT/ED",
+  "repositoryLayout": {
+    "formatVersion": 6,
+    "format": "json",
+    "metaInformation": ".gctsmetadata/",
+    "tableContent": "true",
+    "readableSource": "false",
+    "keepClient": "false",
+    "fingerprintSeckey": "/BYOG/FPRINT_RT/3A065A21D2C81FD0A9A4C69994CBC2C4_0"
+  }
+}
