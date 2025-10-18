@@ -1,0 +1,5 @@
+CLASS /mlsft/bp_ed_head DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF /mlsft/i_edhead.
+ENDCLASS.
+
+CLASS /mlsft/bp_ed_head IMPLEMENTATION.
+ENDCLASS.

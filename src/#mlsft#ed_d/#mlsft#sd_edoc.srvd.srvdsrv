@@ -1,0 +1,6 @@
+@EndUserText.label: 'E-Document RAP Service Definition'
+define service /MLSFT/SD_EDOC {
+  expose /MLSFT/C_EdHead as Head;
+  expose /MLSFT/C_EdRef  as Ref;
+  expose /MLSFT/C_EdRaw  as Raw;
+}

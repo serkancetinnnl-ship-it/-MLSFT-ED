@@ -1,0 +1,5 @@
+@EndUserText.label: 'ED Loader Service Definition'
+define service /MLSFT/ED_LOADER_SRV {
+  expose /MLSFT/C_ED_LOADER     as Loader;
+  expose /MLSFT/C_ED_LOADER_COL as LoaderColumns;
+}

@@ -1,0 +1,32 @@
+projection;
+
+define behavior for /MLSFT/C_EdHead alias Head
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _Ref;
+  use association _Raw;
+
+  use action SendEInvoice;
+  use action CheckStatus;
+  use action XMLDownload;
+  use action PDFDownload;
+  use action SAPInvoiceDelete;
+  use action Refresh;
+  use action AttachmentShow;
+}
+
+define behavior for /MLSFT/C_EdRef alias Ref
+{
+  use update;
+  use association _Head;
+}
+
+define behavior for /MLSFT/C_EdRaw alias Raw
+{
+  use update;
+  use association _Head;
+}

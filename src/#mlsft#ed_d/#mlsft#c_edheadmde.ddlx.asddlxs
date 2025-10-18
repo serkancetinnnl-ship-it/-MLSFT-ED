@@ -1,0 +1,17 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'E-Document', typeNamePlural: 'E-Documents' }
+}
+annotate view /MLSFT/C_EdHead
+    with
+{
+  @UI.lineItem: [
+    { type: #FOR_ACTION, dataAction: 'SendEInvoice', label: 'Send E-Invoice', position: 10 },
+    { type: #FOR_ACTION, dataAction: 'CheckStatus',  label: 'Check Status',  position: 20 },
+    { type: #FOR_ACTION, dataAction: 'XMLDownload',  label: 'Download XML',  position: 30 },
+    { type: #FOR_ACTION, dataAction: 'PDFDownload',  label: 'Download PDF',  position: 40 },
+    { type: #FOR_ACTION, dataAction: 'SAPInvoiceDelete',  label: 'Delete Invoice',  position: 50 },
+    { type: #FOR_ACTION, dataAction: 'Refresh',  label: 'Refresh Status',  position: 60 }
+  ]
+  docnum;  // key field zorunlu bir kolon, MDE içinde referans olabilir
+}

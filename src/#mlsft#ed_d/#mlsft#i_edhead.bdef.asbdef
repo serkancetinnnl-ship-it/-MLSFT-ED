@@ -1,0 +1,74 @@
+managed;
+
+//"========================================================
+//" ROOT ENTITY
+//"========================================================
+define behavior for /MLSFT/I_EdHead alias Head
+implementation in class /MLSFT/bp_ed_head unique
+persistent table /mlsft/ed_head
+lock master
+{
+  create;
+  update;
+  delete;
+
+  //  " Child ilişkileri sadece association olarak yazılır!
+  association _Ref;
+  association _Raw;
+
+  //  " Toolbar / inline actions
+  action ( features : instance ) SendEInvoice result [1] $self;
+  action ( features : instance ) CheckStatus result [1] $self;
+  action ( features : instance ) XMLDownload result [1] $self;
+  action ( features : instance ) PDFDownload result [1] $self;
+  action ( features : instance ) SAPInvoiceDelete result [1] $self;
+  action ( features : instance ) Refresh result [1] $self;
+  action ( features : instance ) AttachmentShow result [1] $self;
+}
+
+//"========================================================
+//" CHILD ENTITY - REF
+//"========================================================
+define behavior for /MLSFT/I_EdRef alias Ref
+implementation in class /MLSFT/bp_ed_ref unique
+persistent table /mlsft/ed_ref
+lock dependent by _Head
+
+{
+  field ( readonly ) docnum;
+
+  update;
+
+  association _Head;
+}
+
+//"========================================================
+//" CHILD ENTITY - RAW
+//"========================================================
+define behavior for /MLSFT/I_EdRaw alias Raw
+implementation in class /MLSFT/bp_ed_raw unique
+persistent table /mlsft/ed_raw
+lock dependent by _Head
+{
+  field ( readonly ) docnum;
+
+  update;
+
+  association _Head;
+}
+
+//define behavior for /MLSFT/I_EdOutMain alias OutMain
+//implementation in class /MLSFT/bp_ed_out_main unique
+//persistent table /mlsft/ed_out_main
+//lock master
+//{
+//  field ( readonly ) docnum;
+//
+////  read;
+//  update;
+//  delete;
+//  create;
+//
+//  // Eğer child entity'lerin varsa buraya eklenir
+//  // örn: association _Raw;
+//}

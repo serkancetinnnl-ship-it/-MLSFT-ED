@@ -1,0 +1,24 @@
+managed implementation in class /mlsft/cl_bp_i_ed_loader unique;
+strict (2);
+
+define behavior for /MLSFT/I_ED_LOADER alias Loader
+  persistent table /mlsft/edloadrun
+  lock master
+  authorization master ( instance )
+{
+  static action ImportCSV
+    parameter /MLSFT/C_ED_LOADER_IMPORTCSV
+    result [1] $self;
+
+  field (readonly, numbering:managed) LoaderUUID;
+  field (readonly) CreatedTime, CreatedBy;
+
+  mapping for /mlsft/edloadrun
+  {
+    LoaderUUID  = loader_uuid;
+    TableName   = table_name;
+    Status      = status;
+    CreatedTime = created_time;
+    CreatedBy   = created_by;
+  }
+}
