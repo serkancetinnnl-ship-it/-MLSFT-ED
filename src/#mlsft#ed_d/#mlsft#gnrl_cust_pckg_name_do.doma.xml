@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DOMA" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD01V>
+    <DOMNAME>/MLSFT/GNRL_CUST_PCKG_NAME_DO</DOMNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DATATYPE>CHAR</DATATYPE>
+    <LENG>000003</LENG>
+    <OUTPUTLEN>000003</OUTPUTLEN>
+    <VALEXI>X</VALEXI>
+    <DDTEXT>General Activation Package Name</DDTEXT>
+    <DOMMASTER>E</DOMMASTER>
+   </DD01V>
+   <DD07V_TAB>
+    <DD07V>
+     <DOMNAME>/MLSFT/GNRL_CUST_PCKG_NAME_DO</DOMNAME>
+     <VALPOS>0001</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>EI</DOMVALUE_L>
+     <DDTEXT>E-Invoice Package</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>/MLSFT/GNRL_CUST_PCKG_NAME_DO</DOMNAME>
+     <VALPOS>0002</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>ET</DOMVALUE_L>
+     <DDTEXT>E-Transport Package</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>/MLSFT/GNRL_CUST_PCKG_NAME_DO</DOMNAME>
+     <VALPOS>0003</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>EL</DOMVALUE_L>
+     <DDTEXT>E-Defter Package</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>/MLSFT/GNRL_CUST_PCKG_NAME_DO</DOMNAME>
+     <VALPOS>0004</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>REC</DOMVALUE_L>
+     <DDTEXT>GEKAP Package</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>/MLSFT/GNRL_CUST_PCKG_NAME_DO</DOMNAME>
+     <VALPOS>0005</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>SF</DOMVALUE_L>
+     <DDTEXT>SAF-T Package</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>/MLSFT/GNRL_CUST_PCKG_NAME_DO</DOMNAME>
+     <VALPOS>0006</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>INF</DOMVALUE_L>
+     <DDTEXT>Enflasyon Package</DDTEXT>
+    </DD07V>
+   </DD07V_TAB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

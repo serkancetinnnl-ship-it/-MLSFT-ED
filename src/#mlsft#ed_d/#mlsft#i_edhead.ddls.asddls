@@ -1,5 +1,7 @@
 @EndUserText.label: 'E-Doc Head (Interface)'
 @AccessControl.authorizationCheck: #NOT_REQUIRED
+@Metadata.allowExtensions: true  
+
 define root view entity /MLSFT/I_EdHead
   as select from /mlsft/ed_head
   composition [0..1] of /MLSFT/I_EdRef as _Ref
@@ -21,7 +23,8 @@ define root view entity /MLSFT/I_EdHead
   association [0..1] to /MLSFT/I_ED_eur_st as _EURStatus on
     _EURStatus.Gibstat = $projection.lstatus
     and _EURStatus.Spras = $session.system_language
-    and (_EURStatus.Land1 = 'NL' or _EURStatus.Land1 = 'RO')
+      and (_EURStatus.Land1 = $session.client )
+//   and (_EURStatus.Land1 = 'NL' or _EURStatus.Land1 = 'RO')
 // and _EURStatus.Land1   = _CompanyCode.Country  FIXME
   
   // Standart referanslar (kullanıma göre aktif et)

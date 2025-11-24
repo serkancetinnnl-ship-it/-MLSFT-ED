@@ -1,0 +1,14 @@
+CLASS /mlsft/cl_ed_action_factory DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS /mlsft/cl_ed_action_factory IMPLEMENTATION.
+ENDCLASS.

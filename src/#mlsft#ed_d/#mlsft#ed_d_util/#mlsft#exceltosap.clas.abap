@@ -42,12 +42,16 @@ CLASS /mlsft/exceltosap DEFINITION
 
 ENDCLASS.
 
-CLASS /mlsft/exceltosap IMPLEMENTATION.
+
+
+CLASS /MLSFT/EXCELTOSAP IMPLEMENTATION.
+
 
   METHOD import_xlsx.
     RAISE EXCEPTION NEW /mlsft/cx_exceltosap(
       text = |XLSX cannot be parsed in this ABAP Cloud system (no permitted UTF-8/XML APIs). Use IMPORT_CSV_STRING instead.| ).
   ENDMETHOD.
+
 
   METHOD import_csv_string.
     rs_result-table = iv_table_name.
@@ -160,6 +164,7 @@ CLASS /mlsft/exceltosap IMPLEMENTATION.
     rs_result-inserted = sy-dbcnt.
   ENDMETHOD.
 
+
   METHOD detect_delim.
     IF iv_header CS ';'.
       rv = ';'.
@@ -169,6 +174,7 @@ CLASS /mlsft/exceltosap IMPLEMENTATION.
       rv = cl_abap_char_utilities=>horizontal_tab.
     ENDIF.
   ENDMETHOD.
+
 
   METHOD split_csv_line.
     DATA len TYPE i.
@@ -227,6 +233,4 @@ CLASS /mlsft/exceltosap IMPLEMENTATION.
 
     rt = lt.
   ENDMETHOD.
-
 ENDCLASS.
-

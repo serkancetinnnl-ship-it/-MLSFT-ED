@@ -8,6 +8,7 @@ implementation in class /MLSFT/bp_ed_head unique
 persistent table /mlsft/ed_head
 lock master
 {
+field ( readonly ) docnum;
   create;
   update;
   delete;
@@ -17,6 +18,7 @@ lock master
   association _Raw;
 
   //  " Toolbar / inline actions
+
   action ( features : instance ) SendEInvoice result [1] $self;
   action ( features : instance ) CheckStatus result [1] $self;
   action ( features : instance ) XMLDownload result [1] $self;

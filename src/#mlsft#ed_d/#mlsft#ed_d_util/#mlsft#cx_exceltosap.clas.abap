@@ -11,11 +11,16 @@ CLASS /mlsft/cx_exceltosap DEFINITION
     DATA mv_text TYPE string.
 ENDCLASS.
 
-CLASS /mlsft/cx_exceltosap IMPLEMENTATION.
+
+
+CLASS /MLSFT/CX_EXCELTOSAP IMPLEMENTATION.
+
+
   METHOD constructor ##ADT_SUPPRESS_GENERATION.
     super->constructor( ).
     mv_text = text.
   ENDMETHOD.
+
 
   METHOD get_text.
     IF mv_text IS NOT INITIAL.
@@ -25,4 +30,3 @@ CLASS /mlsft/cx_exceltosap IMPLEMENTATION.
     ENDIF.
   ENDMETHOD.
 ENDCLASS.
-

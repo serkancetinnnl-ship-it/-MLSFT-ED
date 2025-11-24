@@ -1,5 +1,7 @@
 @EndUserText.label: 'E-Doc Head (Projection with Ref fields)'
 @AccessControl.authorizationCheck: #NOT_REQUIRED
+@Metadata.allowExtensions: true 
+
 @UI: {
   headerInfo: {
     typeName: 'E-Document',
@@ -7,6 +9,7 @@
     title: { type: #STANDARD, value: 'docnum' }
   }
 }
+
 define root view entity /MLSFT/C_EdHead
   as projection on /MLSFT/I_EdHead
 {
@@ -18,11 +21,12 @@ define root view entity /MLSFT/C_EdHead
       @EndUserText.label: 'Document Number'
       @UI.lineItem: [ { position: 10, label: 'Document Number', criticality: 'RowCriticality' } ]
       @UI.selectionField: [ { position: 10 } ]
+
   key docnum,
 
       @UI.hidden: true
       RowCriticality,
-
+ 
       @EndUserText.label: 'E-Document Type'
       @UI.lineItem:       [{ position: 20,  label: 'E-Document Type' }]
       @UI.selectionField: [{ position: 20 }]

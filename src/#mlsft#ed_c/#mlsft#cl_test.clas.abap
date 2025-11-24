@@ -8,7 +8,9 @@ CLASS /mlsft/cl_test DEFINITION
 ENDCLASS.
 
 
-CLASS /mlsft/cl_test IMPLEMENTATION.
+
+CLASS /MLSFT/CL_TEST IMPLEMENTATION.
+
 
   METHOD if_oo_adt_classrun~main.
 " 📌 Rapor: ZLOAD_ED_PARAM
@@ -508,7 +510,4 @@ ENDTRY.
 
 
   ENDMETHOD.
-
-
 ENDCLASS.
-

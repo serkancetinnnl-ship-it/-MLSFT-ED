@@ -21,6 +21,7 @@ CLASS lhc_Head DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS XMLDownload FOR MODIFY
       IMPORTING keys FOR ACTION Head~XMLDownload RESULT result.
+
     METHODS AttachmentShow FOR MODIFY
       IMPORTING keys FOR ACTION Head~AttachmentShow RESULT result.
 
@@ -47,9 +48,6 @@ CLASS lhc_Head IMPLEMENTATION.
       RESULT DATA(lt_head).
 
     " Parametreleri çek
-    SELECT param FROM /mlsft/ed_param
-      WHERE active = 'X'
-      INTO TABLE @DATA(lt_param2).
 
     LOOP AT lt_head ASSIGNING FIELD-SYMBOL(<ls_head>).
 
@@ -61,15 +59,26 @@ CLASS lhc_Head IMPLEMENTATION.
           AND type    = @c_type_button
           AND active  = 'X'
         INTO TABLE @DATA(lt_btns).
-
+      SELECT param,value AS type FROM /mlsft/ed_param
+        WHERE active = 'X'
+         AND param = @c_val_attach
+        INTO TABLE @DATA(lt_param2).
+      LOOP AT lt_param2 ASSIGNING FIELD-SYMBOL(<ls_btn>).
+        <ls_btn>-type = '01'.
+      ENDLOOP.
       TYPES: BEGIN OF ty_btn,
                type  TYPE /mlsft/sei_param-type,
                value TYPE /mlsft/sei_param-value,
              END OF ty_btn.
-
+      TYPES: BEGIN OF ty_btn2,
+               type  TYPE /mlsft/sei_param-type,
+               param TYPE /mlsft/ed_param-param,
+*               value TYPE /mlsft/ed_param-value,
+             END OF ty_btn2.
       DATA lt_btn_set TYPE HASHED TABLE OF ty_btn WITH UNIQUE KEY type value.
       lt_btn_set = CORRESPONDING #( lt_btns ).
-
+      DATA lt_btn_set2 TYPE HASHED TABLE OF ty_btn2 WITH UNIQUE KEY type param .
+      lt_btn_set2 = CORRESPONDING #( lt_param2 ).
       " Her bir buton için aktiflik kontrolü
       DATA(lv_pdf_on)     = xsdbool( line_exists( lt_btn_set[ type = c_type_button value = c_val_pdf     ] ) ).
       DATA(lv_xml_on)     = xsdbool( line_exists( lt_btn_set[ type = c_type_button value = c_val_xml     ] ) ).
@@ -77,7 +86,7 @@ CLASS lhc_Head IMPLEMENTATION.
       DATA(lv_handle_on)  = xsdbool( line_exists( lt_btn_set[ type = c_type_button value = c_val_handle  ] ) ).
       DATA(lv_send_on)    = xsdbool( line_exists( lt_btn_set[ type = c_type_button value = c_val_send    ] ) ).
       DATA(lv_del_on)     = xsdbool( line_exists( lt_btn_set[ type = c_type_button value = c_val_delete  ] ) ).
-      DATA(lv_attach_on)  = xsdbool( line_exists( lt_param2[ param = c_val_attach  ] ) ).
+      DATA(lv_attach_on)  = xsdbool( line_exists( lt_btn_set2[ type = c_type_button  param = c_val_attach ] ) ).
 
       " Sonuç nesnesine append
       APPEND VALUE #(
@@ -101,7 +110,37 @@ CLASS lhc_Head IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD PDFDownload.
+
+    READ ENTITIES OF /MLSFT/I_EdHead IN LOCAL MODE
+      ENTITY Head
+        FIELDS ( docnum )
+        WITH CORRESPONDING #( keys )
+      RESULT DATA(lt_head).
+
+    LOOP AT lt_head ASSIGNING FIELD-SYMBOL(<ls_head>).
+
+      " Document controller örneği
+      DATA(lo_ctrl) = /mlsft/sei_mls_document_ctrl=>get_instance(
+                         iv_docnum = <ls_head>-docnum ).
+
+      DATA lv_guid TYPE /mlsft/ed_guid.
+
+      lv_guid = <ls_head>-docnum.   " C(32) → GUID dönüşümü burada yapılır
+
+      DATA(lo_document) = NEW /mlsft/ed_cl_document(
+                            iv_docnum = lv_guid ).
+
+      lo_ctrl->action_out_download_pdf(
+        io_document = lo_document
+      ).
+
+      " Action result (UI tarafında gerekirse doldurursun)
+      APPEND VALUE #( %tky = <ls_head>-%tky ) TO result.
+
+    ENDLOOP.
+
   ENDMETHOD.
+
 
   METHOD Refresh.
   ENDMETHOD.
